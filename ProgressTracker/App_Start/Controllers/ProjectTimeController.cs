@@ -1,4 +1,5 @@
-﻿using ProgressTracker.Models;
+﻿using ProgressTracker.Context;
+using ProgressTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace ProgressTracker.Controllers
 {
     public class ProjectTimeController : Controller
     {
-        // GET: ProjectTime
+        ProjectDbContext context = new ProjectDbContext();
         
         public ActionResult Index()
         {
-            var projects = new List<ProjectModel>();
+            List<ProjectModel> projects = context.Projects.ToList();
 
             return View(projects);
         }
@@ -24,8 +25,10 @@ namespace ProgressTracker.Controllers
             return View(project);
         }
 
-        public ActionResult Submit(ProjectModel Project)
+        public ActionResult Submit(ProjectModel project)
         {
+            context.Projects.Add(project);
+            context.SaveChanges();
 
             return RedirectToAction("Index");
         }
