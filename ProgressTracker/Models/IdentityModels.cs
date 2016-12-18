@@ -29,5 +29,7 @@ namespace ProgressTracker.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<ProgressTracker.Models.ProjectModel> ProjectModels { get; set; }
     }
 }
