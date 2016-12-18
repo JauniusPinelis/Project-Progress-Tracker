@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.HoursSpent)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", "ProjectTime", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", "ProjectTime", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", "ProjectTime", new { id=item.Id })
         </td>
     </tr>
 }
