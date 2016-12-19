@@ -30,6 +30,7 @@ namespace ProgressTracker.Models
 
         public ProjectModel()
         {
+
             StartTime = DateTime.Now;
             TimeSpentInMinutes = 0;
         }

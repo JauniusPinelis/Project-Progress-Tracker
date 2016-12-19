@@ -24,15 +24,17 @@ namespace ProgressTracker.Controllers
             var project = new ProjectModel();
             return View(project);
         }
+
         
-        //public ActionResult Edit(long id)
-        //{
-        //    var project = context.Projects.Single(x => x.Id == id);
-        //    if (project == null)
-        //        return HttpNotFound();
-        //    return View(project);
-        //}
-        
+        public ActionResult Edit(long? id)
+        {
+            var project = context.Projects.Single(x => x.Id == id);
+            if (project == null)
+                return HttpNotFound();
+            return View(project);
+        }
+
+        [HttpPost]
         public ActionResult Edit(long id, ProjectModel project)
         {
             var _project = context.Projects.Single(x => x.Id == id);
