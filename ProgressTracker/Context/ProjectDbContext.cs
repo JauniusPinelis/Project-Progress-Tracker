@@ -10,5 +10,10 @@ namespace ProgressTracker.Context
     public class ProjectDbContext : DbContext
     {
         public DbSet<ProjectModel> Projects { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer<ProjectDbContext>(null);
+        }
     }
 }

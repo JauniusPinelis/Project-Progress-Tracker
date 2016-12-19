@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HoursSpent)
+            @Html.DisplayNameFor(model => model.TimeSpentInMinutes)
         </th>
         <th></th>
     </tr>
@@ -38,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HoursSpent)
+            @Html.DisplayFor(modelItem => item.TimeSpentInMinutes)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", "ProjectTime", new { id=item.Id }, null) |

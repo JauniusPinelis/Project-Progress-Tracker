@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ProgressTracker.Controllers
 {
-    public class ProjectTimeController : Controller
+    public class ProjectController : Controller
     {
         ProjectDbContext context = new ProjectDbContext();
         
@@ -17,6 +17,18 @@ namespace ProgressTracker.Controllers
             List<ProjectModel> projects = context.Projects.ToList();
 
             return View(projects);
+        }
+
+        public ActionResult Details(long id)
+        {
+            ProjectModel project = context.Projects.SingleOrDefault(p => p.Id == id);
+
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(project);
         }
 
         public ActionResult Create()
@@ -54,6 +66,33 @@ namespace ProgressTracker.Controllers
             context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(long id)
+        {
+            var project = context.Projects.Single(x => x.Id == id);
+
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(project);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(long id, ProjectModel project)
+        {
+            var _project = context.Projects.Single(x => x.Id == id);
+            context.Projects.Remove(_project);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose (bool disposing)
+        {
+            context.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

@@ -17,20 +17,8 @@ namespace ProgressTracker.Models
         public DateTime StartTime { get; set; }
         public long TimeSpentInMinutes { get; set; }
 
-        public long HoursSpent { get
-            {
-                return TimeSpentInMinutes / 60;
-            }
-            set
-            {
-                TimeSpentInMinutes = value / 60;
-            }
-
-        }
-
         public ProjectModel()
         {
-
             StartTime = DateTime.Now;
             TimeSpentInMinutes = 0;
         }
