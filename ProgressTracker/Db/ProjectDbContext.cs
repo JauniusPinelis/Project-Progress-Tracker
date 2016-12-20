@@ -1,4 +1,5 @@
-﻿using ProgressTracker.Models;
+﻿using ProgressTracker.Db;
+using ProgressTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,6 +11,13 @@ namespace ProgressTracker.Context
     public class ProjectDbContext : DbContext
     {
         public DbSet<ProjectModel> Projects { get; set; }
+        public DbSet<TaskModel> Tasks { get; set; }
+
+        public ProjectDbContext()
+        {
+            // This will need to be removed of actual production
+            Database.SetInitializer(new DbInitializer());
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

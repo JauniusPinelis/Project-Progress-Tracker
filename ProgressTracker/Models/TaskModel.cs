@@ -8,7 +8,7 @@ using System.Web;
 namespace ProgressTracker.Models
 {
     [Table("task")]
-    public class TaskModel
+    public class TaskModel : BaseObject
     {
         [Key]
         public long Id { get; set; }

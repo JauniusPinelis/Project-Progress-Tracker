@@ -18,7 +18,7 @@ namespace ProgressTracker.Controllers
         // GET: Task
         public ActionResult Index()
         {
-            return View(db.TaskModels.ToList());
+            return View(db.Tasks.ToList());
         }
 
         // GET: Task/Details/5
@@ -28,7 +28,7 @@ namespace ProgressTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaskModel taskModel = db.TaskModels.Find(id);
+            TaskModel taskModel = db.Tasks.Find(id);
             if (taskModel == null)
             {
                 return HttpNotFound();
@@ -51,7 +51,7 @@ namespace ProgressTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TaskModels.Add(taskModel);
+                db.Tasks.Add(taskModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +66,7 @@ namespace ProgressTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaskModel taskModel = db.TaskModels.Find(id);
+            TaskModel taskModel = db.Tasks.Find(id);
             if (taskModel == null)
             {
                 return HttpNotFound();
@@ -97,7 +97,7 @@ namespace ProgressTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaskModel taskModel = db.TaskModels.Find(id);
+            TaskModel taskModel = db.Tasks.Find(id);
             if (taskModel == null)
             {
                 return HttpNotFound();
@@ -110,8 +110,8 @@ namespace ProgressTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            TaskModel taskModel = db.TaskModels.Find(id);
-            db.TaskModels.Remove(taskModel);
+            TaskModel taskModel = db.Tasks.Find(id);
+            db.Tasks.Remove(taskModel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
