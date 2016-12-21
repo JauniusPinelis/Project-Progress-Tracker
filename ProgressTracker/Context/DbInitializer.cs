@@ -7,9 +7,9 @@ using System.Web;
 
 namespace ProgressTracker.Db
 {
-    public class DbInitializer : IDatabaseInitializer<ProjectDbContext>
+    public class DbInitializer : DropCreateDatabaseIfModelChanges<ProjectDbContext>
     {
-        public void InitializeDatabase(ProjectDbContext context)
+        protected override void Seed(ProjectDbContext context)
         {
             if (!context.Database.Exists() || !context.Database.CompatibleWithModel(true))
             {

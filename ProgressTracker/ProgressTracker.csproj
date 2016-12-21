@@ -171,8 +171,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
-    <Compile Include="Db\DbInitializer.cs" />
-    <Compile Include="Db\ProjectDbContext.cs" />
+    <Compile Include="Context\DbInitializer.cs" />
+    <Compile Include="Context\ProjectDbContext.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -13,10 +13,10 @@ namespace ProgressTracker.Context
         public DbSet<ProjectModel> Projects { get; set; }
         public DbSet<TaskModel> Tasks { get; set; }
 
-        public ProjectDbContext()
+        public ProjectDbContext() : base ("ProjectDbContext")
         {
             // This will need to be removed of actual production
-            Database.SetInitializer(new DbInitializer());
+           
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
