@@ -1,5 +1,4 @@
-﻿using ProgressTracker.Db;
-using ProgressTracker.Models;
+﻿using ProgressTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

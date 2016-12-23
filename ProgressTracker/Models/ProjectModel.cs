@@ -17,6 +17,8 @@ namespace ProgressTracker.Models
         public DateTime StartTime { get; set; }
         public long TimeSpentInMinutes { get; set; }
 
+        public ICollection<TaskModel> Tasks { get; set; }
+
         public ProjectModel()
         {
             StartTime = DateTime.Now;
