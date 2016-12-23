@@ -40,7 +40,8 @@ namespace ProgressTracker.Controllers
         public ActionResult Create()
         {
             this.ViewData["project"] = new SelectList(db.Projects.ToList(), "Id", "Name");
-            return View();
+            TaskModel task = new TaskModel();
+            return View(task);
         }
 
         // POST: Task/Create
@@ -48,7 +49,7 @@ namespace ProgressTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,MinutesSpent")] TaskModel taskModel)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,TimeSpentInMinutes")] TaskModel taskModel)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +81,7 @@ namespace ProgressTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,MinutesSpent")] TaskModel taskModel)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,TimeSpentInMinutes")] TaskModel taskModel)
         {
             if (ModelState.IsValid)
             {

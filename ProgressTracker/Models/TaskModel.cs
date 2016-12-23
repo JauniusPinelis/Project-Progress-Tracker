@@ -8,17 +8,15 @@ using System.Web;
 namespace ProgressTracker.Models
 {
     [Table("task")]
-    public class TaskModel : BaseObject
+    public class TaskModel : BaseModel
     {
-        [Key]
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public long MinutesSpent { get; set; }
         public bool IsCompleted { get; set; }
-
         public long ProjectId { get; set; }
-        
         public virtual ProjectModel Project { get; set; }
+
+        public TaskModel()
+        {
+            IsCompleted = false;
+        }
     }
 }

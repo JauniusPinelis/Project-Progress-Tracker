@@ -33,7 +33,8 @@ namespace ProgressTracker.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var project = new ProjectModel();
+            return View(project);
         }
 
         [HttpPost]
