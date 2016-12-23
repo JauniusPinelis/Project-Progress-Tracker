@@ -16,5 +16,9 @@ namespace ProgressTracker.Models
         public string Description { get; set; }
         public long MinutesSpent { get; set; }
         public bool IsCompleted { get; set; }
+
+        public long ProjectId { get; set; }
+        
+        public virtual ProjectModel Project { get; set; }
     }
 }

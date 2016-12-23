@@ -10,18 +10,18 @@ namespace ProgressTracker.Controllers
 {
     public class ProjectController : Controller
     {
-        ProjectDbContext context = new ProjectDbContext();
+        ProjectDbContext db = new ProjectDbContext();
         
         public ActionResult Index()
         {
-            List<ProjectModel> projects = context.Projects.ToList();
+            List<ProjectModel> projects = db.Projects.ToList();
 
             return View(projects);
         }
 
         public ActionResult Details(long id)
         {
-            ProjectModel project = context.Projects.SingleOrDefault(p => p.Id == id);
+            ProjectModel project = db.Projects.SingleOrDefault(p => p.Id == id);
 
             if (project == null)
             {
@@ -33,14 +33,26 @@ namespace ProgressTracker.Controllers
 
         public ActionResult Create()
         {
-            var project = new ProjectModel();
-            return View(project);
+            return View();
         }
 
-        
+        [HttpPost]
+        public ActionResult Create( ProjectModel project)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Projects.Add(project);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
         public ActionResult Edit(long? id)
         {
-            var project = context.Projects.Single(x => x.Id == id);
+            var project = db.Projects.Single(x => x.Id == id);
             if (project == null)
                 return HttpNotFound();
             return View(project);
@@ -49,28 +61,20 @@ namespace ProgressTracker.Controllers
         [HttpPost]
         public ActionResult Edit(long id, ProjectModel project)
         {
-            var _project = context.Projects.Single(x => x.Id == id);
+            var _project = db.Projects.Single(x => x.Id == id);
 
             _project.Name = project.Name;
             _project.Description = project.Description;
             _project.TimeSpentInMinutes = project.TimeSpentInMinutes;
 
-            context.SaveChanges();
-
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Submit(ProjectModel project)
-        {
-            context.Projects.Add(project);
-            context.SaveChanges();
+            db.SaveChanges();
 
             return RedirectToAction("Index");
         }
 
         public ActionResult Delete(long id)
         {
-            var project = context.Projects.Single(x => x.Id == id);
+            var project = db.Projects.Single(x => x.Id == id);
 
             if (project == null)
             {
@@ -83,15 +87,15 @@ namespace ProgressTracker.Controllers
         [HttpPost]
         public ActionResult Delete(long id, ProjectModel project)
         {
-            var _project = context.Projects.Single(x => x.Id == id);
-            context.Projects.Remove(_project);
-            context.SaveChanges();
+            var _project = db.Projects.Single(x => x.Id == id);
+            db.Projects.Remove(_project);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose (bool disposing)
         {
-            context.Dispose();
+            db.Dispose();
             base.Dispose(disposing);
         }
     }
