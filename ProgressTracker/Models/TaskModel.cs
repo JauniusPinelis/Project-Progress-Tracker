@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -10,8 +11,12 @@ namespace ProgressTracker.Models
     [Table("task")]
     public class TaskModel : BaseModel
     {
+        [DisplayName("Is completed")]
         public bool IsCompleted { get; set; }
+
+        [DisplayName("Project")]
         public long ProjectId { get; set; }
+
         public virtual ProjectModel Project { get; set; }
 
         public TaskModel()

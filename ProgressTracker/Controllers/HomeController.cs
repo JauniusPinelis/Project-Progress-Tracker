@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgressTracker.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,13 @@ namespace ProgressTracker.Controllers
 {
     public class HomeController : Controller
     {
+        private ProjectDbContext db = new ProjectDbContext();
+
         public ActionResult Index()
         {
-            return View();
+            var recentProjects = db.Projects.OrderBy(x => x.LastModified).Take(3);
+            
+            return View(recentProjects);
         }
 
         public ActionResult About()
