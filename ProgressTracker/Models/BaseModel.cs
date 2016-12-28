@@ -23,6 +23,7 @@ namespace ProgressTracker.Models
         public BaseModel()
         {
             LastModified = DateTime.Now;
+            StartDate = DateTime.Now;
             TimeSpentInMinutes = 0;
         }
     }

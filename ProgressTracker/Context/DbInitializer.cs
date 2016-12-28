@@ -11,6 +11,7 @@ namespace ProgressTracker.Context
     {
         protected override void Seed(ProjectDbContext context)
         {
+            context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "ALTER DATABASE [" + context.Database.Connection.Database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
             InitializeDatabase(context);
         }
     }

@@ -13,7 +13,7 @@ namespace ProgressTracker.Models
     {
         public virtual ICollection<TaskModel> Tasks { get; set; }
 
-        public ProjectModel()
+        public ProjectModel() : base()
         {
             Tasks = new List<TaskModel>();
         }

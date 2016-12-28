@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgressTracker.Context;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -19,9 +20,12 @@ namespace ProgressTracker.Models
 
         public virtual ProjectModel Project { get; set; }
 
-        public TaskModel()
+        public List<ProjectModel> AvailableProjects { get; private set; }
+
+        public TaskModel (ProjectDbContext db)
         {
             IsCompleted = false;
+            AvailableProjects = db.Projects.ToList();
         }
     }
 }

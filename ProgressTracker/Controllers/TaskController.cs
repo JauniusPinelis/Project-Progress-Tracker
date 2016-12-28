@@ -39,8 +39,7 @@ namespace ProgressTracker.Controllers
         // GET: Task/Create
         public ActionResult Create()
         {
-            this.ViewData["project"] = new SelectList(db.Projects.ToList(), "Id", "Name");
-            TaskModel task = new TaskModel();
+            TaskModel task = new TaskModel(db);
             return View(task);
         }
 
